@@ -180,7 +180,15 @@ body._touch .menu__arrow{
     border-right: 5px solid transparent;
     border-top: 10px solid #fff;
 }
-
+body._touch .menu__list > li._active .menu__sub-list{
+    opacity: 1;
+    visibility: visible;
+    transform: translate(0px, 0px);
+    pointer-events: all;
+}
+body._touch .menu__list > li._active .menu__arrow {
+    transform: rotate(-180deg);
+}
 /* --------------- */
 
 @media (min-width:767px) {
