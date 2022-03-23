@@ -26,7 +26,9 @@ const isMobile = {
             isMobile.Windows());
     }
 };
+// код определяит если телефон ипад итд это _touch если пк то _pc 
 
+// работа с стрелкой на li>li
 if (isMobile.any()) {
     document.body.classList.add('_touch')
     let menuArrows=document.querySelectorAll(".menu__arrow")
@@ -41,4 +43,29 @@ if (isMobile.any()) {
 } else {
     document.body.classList.add('_pc')
 } 
-// код определяит если телефон ипад итд это _touch если пк то _pc 
+
+// должна быть медленая прокретка до определёного контента 
+// в итоге стало телепортацыя розберусь когда изучу java.script
+
+const menuLinks = document.querySelectorAll('.menu__link[data-goto]')
+if (menuLinks.length > 0) {
+    menuLinks.forEach(menuLink => {
+        menuLink.addEventListener("click",onMenuLinkClick);
+    });
+
+    function onMenuLinkClick(e) {
+        const menuLink = e.target;
+        if(menuLink.dataset.goto && document.querySelector(menuLink.dataset.goto)) {
+            const gotoBlock = document.querySelector(menuLink.dataset.goto);
+            const gotoBlockValue = gotoBlock.getBoundingClientRect().top + pageYOffset - document.querySelector("header").offsetHeight;
+        
+            window.scrollTo({
+                top: gotoBlockValue,
+                behavior:"smooth"
+            });
+            e.preventDefault();
+        }
+    }
+}
+
+// -----------------------//
