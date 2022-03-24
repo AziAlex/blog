@@ -109,6 +109,7 @@ line-height: 150%;
 .menu {
 }
 .menu__icon {
+    display: none;
 }
 .menu__body {
 }
@@ -126,6 +127,7 @@ line-height: 150%;
 .menu__link:hover{
     text-decoration: underline;
 }
+/* выпадающа меню */
 .menu__sub-list {
     position: absolute;
     top: 100%;
@@ -190,7 +192,7 @@ body._touch .menu__list > li._active .menu__arrow {
     transform: rotate(-180deg);
 }
 /* --------------- */
-
+/* для экрана компа */
 @media (min-width:767px) {
     .menu__list{
         display: flex;
@@ -206,4 +208,77 @@ body._touch .menu__list > li._active .menu__arrow {
         pointer-events: none;
         transition: all 0.3s ease 0s;
     }
+}
+
+/* для экрана телефона */
+@media (max-width: 767px) {
+    .menu__icon{
+        z-index: 5;
+        display: block;
+        position: relative;
+        width: 30px;
+        height: 18px;
+        cursor: pointer;
+    }
+    .menu__icon span,
+    .menu__icon::before,
+    .menu__icon::after{
+        left: 0;
+        position: absolute;
+        height: 10%;
+        width: 100%;
+        transition: all 0.3s ease 0s;
+        background-color: #fff;
+    }
+    .menu__icon::before,
+    .menu__icon::after{
+        content: "";
+    }
+    .menu__icon::before {
+        top: 0;
+    }
+    .menu__icon::after{
+        bottom: 0;
+    }
+    .menu__icon span {
+        top:  50%;
+        transform: scale(1) translate(0px, -50%) ;
+    }
+    /* menu__body это карман для разрешэня экрана меньше 767 */
+    .menu__body {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgb(0, 0, 0,0.8);
+        padding: 100px 30px 30px 30px;
+        transition: left 0.3s ease 0s;
+    }
+    .menu__list > li {
+        flex-wrap: wrap;
+        margin: 0 0 30px 0;
+    }
+    .menu__list > li:last-child {
+        margin-bottom: 0;
+    
+
+    }
+    .menu__list > li._active{
+        display: block;
+    }
+    .menu__link {
+        font-size: 24px;
+    }
+    .menu__sub-list {
+        position: relative;
+        background-color: #fff;
+        flex: 1 1 100%;
+        margin: 20px 0 0 0;
+    }
+    .menu__sub-link {
+        font-size: 20px;
+        color: #000;
+    }
+
 }
